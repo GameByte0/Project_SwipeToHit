@@ -14,20 +14,20 @@ public class PlayerAnimSO : ScriptableObject
     [SerializeField] private AnimationClip defenceAnim;
     [SerializeField] private AnimationClip itemUseAnim;
 
-    public string PlayAnimation(int a)
+    public string PlayAnimation(ActionTypes a)
     {
         switch (a)
         {
-            case 1 :
+            case ActionTypes.UP :
                 return upSwipeAnim.name;
                 
-            case 2:
+            case ActionTypes.RIGHT:
                 return rightSwipeAnim.name;
                 
-            case 3:
+            case ActionTypes.DOWN:
                 return downSwipeAnim.name;
                 
-            case 4:
+            case ActionTypes.LEFT:
                 return leftSwipeAnim.name;
 
             default:

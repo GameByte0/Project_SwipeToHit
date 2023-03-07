@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 684775763234917314}
   - component: {fileID: 3899117840521200429}
   m_Layer: 5
-  m_Name: Image -Right Swipe BackGround (3)
+  m_Name: Image -Right Swipe BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

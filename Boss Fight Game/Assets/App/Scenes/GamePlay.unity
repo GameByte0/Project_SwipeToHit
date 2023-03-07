@@ -406,9 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d9e39d84fcdae4b95b92e723d05e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeDirectionImage: {fileID: 0}
   pixelOffset: 50
-  animator: {fileID: 648575511}
 --- !u!65 &648575509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -482,7 +480,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832575517}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -490,7 +488,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0.5
   sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
 --- !u!4 &832575519
 Transform:
@@ -561,11 +559,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Directions:
   - {fileID: 7562145510774158378, guid: 5d4b5f308aa142743b3ddd3f715ce5d1, type: 3}
+  - {fileID: 4671140119251908639, guid: 77e263b388fd3bf4ab95490de51f1ee1, type: 3}
   - {fileID: 267345659708744357, guid: 71555fb93f497fd449de31ce2ebd5d88, type: 3}
   - {fileID: 7508858052724410374, guid: 941ee00e2eda76042a22bd4a70d885ce, type: 3}
-  - {fileID: 4671140119251908639, guid: 77e263b388fd3bf4ab95490de51f1ee1, type: 3}
   Task: []
   Result: []
+  difficultyLevel: 6
 --- !u!114 &991410231
 MonoBehaviour:
   m_ObjectHideFlags: 0

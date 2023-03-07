@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         GameEvents.OnSwipingEvent -=OnSwipingEventHandler;
     }
 
-    private void OnSwipingEventHandler(int a)
+    private void OnSwipingEventHandler(ActionTypes a)
     {
         animator.Play( playerAnimationsSO.PlayAnimation(a));
     }

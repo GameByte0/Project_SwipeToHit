@@ -4,14 +4,23 @@ namespace BossFightGame.Events
 {
     public static class GameEvents
     {
-        public delegate void OnSwiping(int a);
+        public delegate void OnSwiping(ActionTypes eventDetails);
         public static event OnSwiping OnSwipingEvent;
 
-        public static void RaiseOnSwiping(int i)
+        public static void RaiseOnSwiping(ActionTypes i)
         {
             OnSwipingEvent?.Invoke(i);
         }
 
     }
+    
+}
+public enum ActionTypes
+{
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT
+
 }
 

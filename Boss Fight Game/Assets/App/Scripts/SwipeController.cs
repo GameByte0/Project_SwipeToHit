@@ -18,10 +18,10 @@ public class SwipeController : MonoBehaviour
     private SwipeDirection swipeDirection;
 
     //swipe direction order
-    private int up = 1;
-    private int right = 2;
-    private int down = 3;
-    private int left = 4;
+    //private int up = 1;
+    //private int right = 2;
+    //private int down = 3;
+    //private int left = 4;
 
 
 
@@ -99,12 +99,12 @@ public class SwipeController : MonoBehaviour
                     if (endTouchPos.x > startTouchPos.x + pixelOffset)
                     {
                         Debug.Log("Swipe Right");
-                        GameEvents.RaiseOnSwiping(right);
+                        GameEvents.RaiseOnSwiping(ActionTypes.RIGHT);
                     }
                     else if (endTouchPos.x < startTouchPos.x + pixelOffset)
                     {
                         Debug.Log("Swipe Left");
-                        GameEvents.RaiseOnSwiping(left);
+                        GameEvents.RaiseOnSwiping(ActionTypes.LEFT);
                     }
 
                     break;
@@ -114,12 +114,12 @@ public class SwipeController : MonoBehaviour
                     if (endTouchPos.y > startTouchPos.y + pixelOffset)
                     {
                         Debug.Log("Swipe Up");
-                        GameEvents.RaiseOnSwiping(up);
+                        GameEvents.RaiseOnSwiping(ActionTypes.UP);
                     }
                     else if (endTouchPos.y < startTouchPos.y + pixelOffset)
                     {
                         Debug.Log("Swipe Down");
-                        GameEvents.RaiseOnSwiping(down);
+                        GameEvents.RaiseOnSwiping(ActionTypes.DOWN);
                     }
 
                     break;
@@ -154,10 +154,7 @@ public class SwipeController : MonoBehaviour
             swipeDirection = SwipeDirection.NONE;
         }
     }
-    private void PlayAnim(int AnimHash)
-    {
-        //animator.SetTrigger(AnimHash);
-    }
+
     private enum SwipeDirection
     {
         HORIZONTAL,
