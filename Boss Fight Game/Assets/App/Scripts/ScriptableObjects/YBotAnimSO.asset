@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c1836950e29734ebd592354e2b0cd5, type: 3}
+  m_Name: YBotAnimSO
+  m_EditorClassIdentifier: 
+  characterName: Y-Bot
+  leftSwipeAnim: {fileID: -203655887218126122, guid: cc82a1b1ba90b7240a1cdad9a7acc66e,
+    type: 3}
+  rightSwipeAnim: {fileID: -203655887218126122, guid: 8b9fad28761c72b47a074d9f8d5c3ec3,
+    type: 3}
+  upSwipeAnim: {fileID: -203655887218126122, guid: 866e86780d7032d43b48cc5c1a8e0808,
+    type: 3}
+  downSwipeAnim: {fileID: -203655887218126122, guid: b66af0553b962634fa17d702df5d725e,
+    type: 3}
+  specialAnim: {fileID: 0}
+  defenceAnim: {fileID: 0}
+  itemUseAnim: {fileID: 0}
