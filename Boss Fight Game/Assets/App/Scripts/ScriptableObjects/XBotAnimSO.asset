@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c1836950e29734ebd592354e2b0cd5, type: 3}
   m_Name: XBotAnimSO
   m_EditorClassIdentifier: 
-  characterName: 
+  characterName: X-Bot
   leftSwipeAnim: {fileID: -203655887218126122, guid: cc82a1b1ba90b7240a1cdad9a7acc66e,
     type: 3}
   rightSwipeAnim: {fileID: -203655887218126122, guid: 8b9fad28761c72b47a074d9f8d5c3ec3,
