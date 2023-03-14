@@ -26,4 +26,9 @@ public class MainMenuController : MonoBehaviour
         view.gameObject.SetActive(false);
         UIEvents.RaisOnCharacterSelectMenu();
     }
+    public void SettingsPressed()
+    {
+        view.gameObject.SetActive(false);
+        UIEvents.RaisOnSettingsMenu();
+    }
 }

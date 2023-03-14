@@ -8,8 +8,9 @@ using System;
 public class CameraManager : MonoBehaviour
 {
     [Header("CAMERAS:")]
-    [SerializeField] private CinemachineVirtualCamera mainCam;
+    [SerializeField] private CinemachineVirtualCamera portalCam;
     [SerializeField] private CinemachineVirtualCamera characterChangeCam;
+    [SerializeField] private CinemachineVirtualCamera settingsWallCam;
 
 
     [SerializeField] private List<CinemachineVirtualCamera> allMenuCameras;
@@ -19,11 +20,13 @@ public class CameraManager : MonoBehaviour
     {
         UIEvents.OnCharacterSelectMenuEvent += OnCharacterSelectMenuEventHandler;
         UIEvents.OnReturnToMainMenuEvent += OnReturnToMainMenuEventHandler;
+        UIEvents.OnSettingsMenuEvent += OnSettingsMenuEventHandler;
     }
     private void OnDisable()
     {
         UIEvents.OnCharacterSelectMenuEvent -= OnCharacterSelectMenuEventHandler;
         UIEvents.OnReturnToMainMenuEvent -= OnReturnToMainMenuEventHandler;
+        UIEvents.OnSettingsMenuEvent -= OnSettingsMenuEventHandler;
     }
 
     private void OnCharacterSelectMenuEventHandler()
@@ -32,18 +35,23 @@ public class CameraManager : MonoBehaviour
     }
     private void OnReturnToMainMenuEventHandler()
     {
-        SwitchCam(mainCam);
+        SwitchCam(portalCam);
+    }
+    private void OnSettingsMenuEventHandler()
+    {
+        SwitchCam(settingsWallCam);
     }
 
     private void Awake()
     {
-        allMenuCameras.Add(mainCam);
+        allMenuCameras.Add(portalCam);
         allMenuCameras.Add(characterChangeCam);
+        allMenuCameras.Add(settingsWallCam);
     }
 
     private void Start()
     {
-        SwitchCam(mainCam);
+        SwitchCam(portalCam);
     }
 
     private void SwitchCam(CinemachineVirtualCamera c)
