@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e80d1eff8ed2e048a1851f0ad814927, type: 3}
+  m_Name: CGManCharacterDB
+  m_EditorClassIdentifier: 
+  characterPrefab: {fileID: 6133552519949341028, guid: a079dd9b4a2fe1e43847f42e86c38145,
+    type: 3}
+  animationsSO: {fileID: 11400000, guid: 1dde1df3ddc23dc4ab727d4105d406aa, type: 2}
+  characterHealth: 100
+  characterMana: 50
+  characterEXP: 0

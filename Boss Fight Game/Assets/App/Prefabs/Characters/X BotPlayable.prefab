@@ -1473,9 +1473,8 @@ GameObject:
   - component: {fileID: 970715034902204011}
   - component: {fileID: 6634428456639703259}
   - component: {fileID: 6634428456639703258}
-  - component: {fileID: 6634428456639703256}
   m_Layer: 0
-  m_Name: X Bot
+  m_Name: X BotPlayable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,8 +1487,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5824087075543551659}
-  m_LocalRotation: {x: -0, y: 0.9629806, z: -0, w: 0.26957065}
-  m_LocalPosition: {x: -3, y: 0, z: 3.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1498,7 +1497,7 @@ Transform:
   - {fileID: 1713850789191595141}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 148.723, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &970715034902204011
 Animator:
   serializedVersion: 4
@@ -1548,20 +1547,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6764563, y: 1.7638912, z: 0.48382103}
   m_Center: {x: -0.01856047, y: 0.89002514, z: 0.0033134152}
---- !u!114 &6634428456639703256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824087075543551659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad9999d50bd2aa40a8afb161ee223ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 970715034902204011}
-  enemyAnimSO: {fileID: 11400000, guid: 01d271b22792ef14da1584044fb6494b, type: 2}
 --- !u!1 &5943721807717767823
 GameObject:
   m_ObjectHideFlags: 0

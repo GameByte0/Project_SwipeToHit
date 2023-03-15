@@ -1094,10 +1094,8 @@ GameObject:
   - component: {fileID: 8530768378086674688}
   - component: {fileID: 2813048882219848006}
   - component: {fileID: 2813048882219848005}
-  - component: {fileID: 2813048882219848002}
-  - component: {fileID: 2813048882219848009}
   m_Layer: 0
-  m_Name: Y Bot
+  m_Name: Y BotPlayable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1110,8 +1108,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154944008941228480}
-  m_LocalRotation: {x: 0.02730225, y: -0.0020934078, z: 0.000048385085, w: 0.999625}
-  m_LocalPosition: {x: 3, y: 0, z: -3.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1120,7 +1118,7 @@ Transform:
   - {fileID: 7841645170768374766}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 3.129, y: -0.24, z: -0.001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8530768378086674688
 Animator:
   serializedVersion: 4
@@ -1170,33 +1168,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.42283094, y: 1.8065414, z: 0.40261677}
   m_Center: {x: -0.0022723153, y: 0.9031811, z: 0.030132487}
---- !u!114 &2813048882219848002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3154944008941228480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d9e39d84fcdae4b95b92e723d05e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pixelOffset: 50
---- !u!114 &2813048882219848009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3154944008941228480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902567aa36259614bb90ff0190a10d46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8530768378086674688}
-  playerAnimationsSO: {fileID: 11400000, guid: 17e04800b66d76e4a90653c0d469b77c, type: 2}
 --- !u!1 &3515492608282762266
 GameObject:
   m_ObjectHideFlags: 0
