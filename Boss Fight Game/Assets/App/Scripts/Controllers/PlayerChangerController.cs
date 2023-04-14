@@ -1,4 +1,4 @@
-using System.Collections;
+using BossFightGame.Events;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class PlayerChangerController : MonoBehaviour
 
     private GameObject instance;
     private bool isShowing;
-
+    private bool isCharacterSelected;
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class PlayerChangerController : MonoBehaviour
     }
     void Update()
     {
-        if (isShowing==false)
+        if (isShowing == false)
         {
             ShowCharacter(selectedCharacterIndex);
         }
@@ -27,7 +27,7 @@ public class PlayerChangerController : MonoBehaviour
 
     public void NextCharacter()
     {
-        if (selectedCharacterIndex!=characterDataBase.Count-1)
+        if (selectedCharacterIndex != characterDataBase.Count - 1)
         {
             selectedCharacterIndex++;
         }
@@ -35,11 +35,12 @@ public class PlayerChangerController : MonoBehaviour
         {
             selectedCharacterIndex = 0;
         }
+        isCharacterSelected = false;
         isShowing = false;
     }
     public void PreviousCharacter()
     {
-        if (selectedCharacterIndex!=0)
+        if (selectedCharacterIndex != 0)
         {
             selectedCharacterIndex--;
         }
@@ -47,16 +48,40 @@ public class PlayerChangerController : MonoBehaviour
         {
             selectedCharacterIndex = characterDataBase.Count - 1;
         }
+        isCharacterSelected = false;
         isShowing = false;
+    }
+    public void SelectCharacter()
+    {
+        PlayerPrefs.SetInt("SelectedCharacterIndex", selectedCharacterIndex);
+
+
+        int i = PlayerPrefs.GetInt("SelectedCharacterIndex");
+        Debug.Log("Selected Character : " + selectedCharacterIndex + "Saved Index : " + i);
+        
+        isCharacterSelected = true;
+        isShowing = false;
+
     }
     private void ShowCharacter(int index)
     {
-        if (instance!=null)
+        int i = PlayerPrefs.GetInt("SelectedCharacterIndex");
+        if (isCharacterSelected==false)
         {
-            Destroy(instance);
+            if (instance != null)
+            {
+                Destroy(instance);
+            }
+            instance = Instantiate(characterDataBase[index].CharacterPrefab, spawnPoint);
+            isShowing = true;
+            
+            //simple debug for checking algorithm
+            Debug.Log("Current Character : " + selectedCharacterIndex + "Saved Index : " + i);
+
         }
-       instance = Instantiate(characterDataBase[index].CharacterPrefab, spawnPoint);
-        isShowing = true;
+        //if showing character already selected don't show "Select" button
+        GameEvents.RaiseOnSelectingFighter(selectedCharacterIndex == i);
+
     }
 
 

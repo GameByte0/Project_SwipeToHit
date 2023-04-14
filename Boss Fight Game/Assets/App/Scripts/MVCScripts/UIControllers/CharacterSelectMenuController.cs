@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BossFightGame.UIEvents;
 using System;
+using BossFightGame.Events;
 
 public class CharacterSelectMenuController : MonoBehaviour
 {
@@ -12,10 +13,24 @@ public class CharacterSelectMenuController : MonoBehaviour
     private void OnEnable()
     {
         UIEvents.OnCharacterSelectMenuEvent += OnCharacterSelectMenuEventHandler;
+        GameEvents.OnSelectingFighterEvent += OnSelectingFighterEventHandler;
     }
     private void OnDisable()
     {
         UIEvents.OnCharacterSelectMenuEvent -= OnCharacterSelectMenuEventHandler;
+        GameEvents.OnSelectingFighterEvent -= OnSelectingFighterEventHandler;
+    }
+
+    private void OnSelectingFighterEventHandler(bool eventDetails)
+    {
+        if (eventDetails)
+        {
+            view.DisableCharacterSelection();
+        }
+        else
+        {
+            view.EnableCharacterSelection();
+        }
     }
 
     private void OnCharacterSelectMenuEventHandler()
