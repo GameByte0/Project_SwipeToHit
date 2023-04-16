@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e80d1eff8ed2e048a1851f0ad814927, type: 3}
   m_Name: XBotCharacterDB
   m_EditorClassIdentifier: 
-  characterName: 
+  characterName: XBot
   characterPrefab: {fileID: 5824087075543551659, guid: 433f3e2cd76126e40aa1fd9237cac006,
     type: 3}
   animationsSO: {fileID: 11400000, guid: 01d271b22792ef14da1584044fb6494b, type: 2}

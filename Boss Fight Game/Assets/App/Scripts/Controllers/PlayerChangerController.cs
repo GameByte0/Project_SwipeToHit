@@ -1,11 +1,11 @@
 using BossFightGame.Events;
 using System.Collections.Generic;
 using UnityEngine;
+using BossFightGame.GameManager;
 
 public class PlayerChangerController : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private List<CharacterDataSO> characterDataBase;
 
     private int selectedCharacterIndex;
 
@@ -27,8 +27,9 @@ public class PlayerChangerController : MonoBehaviour
 
     public void NextCharacter()
     {
-        if (selectedCharacterIndex != characterDataBase.Count - 1)
+        if (selectedCharacterIndex != GameManager.Instance.CharacterDataBase.Count - 1)
         {
+            
             selectedCharacterIndex++;
         }
         else
@@ -46,7 +47,7 @@ public class PlayerChangerController : MonoBehaviour
         }
         else
         {
-            selectedCharacterIndex = characterDataBase.Count - 1;
+            selectedCharacterIndex = GameManager.Instance.CharacterDataBase.Count - 1;
         }
         isCharacterSelected = false;
         isShowing = false;
@@ -72,7 +73,7 @@ public class PlayerChangerController : MonoBehaviour
             {
                 Destroy(instance);
             }
-            instance = Instantiate(characterDataBase[index].CharacterPrefab, spawnPoint);
+            instance = Instantiate(GameManager.Instance.CharacterDataBase[index].CharacterPrefab, spawnPoint);
             isShowing = true;
             
             //simple debug for checking algorithm

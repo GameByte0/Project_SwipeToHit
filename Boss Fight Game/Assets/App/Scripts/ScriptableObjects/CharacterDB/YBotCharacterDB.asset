@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e80d1eff8ed2e048a1851f0ad814927, type: 3}
   m_Name: YBotCharacterDB
   m_EditorClassIdentifier: 
-  characterName: 
+  characterName: YBot
   characterPrefab: {fileID: 3154944008941228480, guid: 8e86e036a31ce1643b95c7fa87e133b8,
     type: 3}
   animationsSO: {fileID: 11400000, guid: 17e04800b66d76e4a90653c0d469b77c, type: 2}
-  characterHealth: 100
+  characterHealth: 50
   characterMana: 50
   characterEXP: 0
