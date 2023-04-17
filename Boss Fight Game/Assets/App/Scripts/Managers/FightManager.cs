@@ -19,25 +19,31 @@ public class FightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = Instantiate(GameManager.Instance.CharacterDataBase[characterIndex].CharacterPrefab);
+        SetPlayer();
 
-        player.transform.position = playerLocation.position;
+        SetEnemy();
+    }
 
-        player.transform.LookAt(enemyLocation);
-        //player.transform.rotation = playerLocation.rotation;
-
+    private void SetEnemy()
+    {
         GameObject enemy = Instantiate(enemyPrefab);
+
         enemy.transform.position = enemyLocation.position;
 
         enemy.transform.LookAt(playerLocation);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetPlayer()
     {
+        GameObject player = Instantiate(GameManager.Instance.CharacterDataBase[characterIndex].CharacterPrefab);
 
+        player.AddComponent<PlayerController>();
+        player.AddComponent<SwipeController>();
+
+        player.transform.position = playerLocation.position;
+
+        player.transform.LookAt(enemyLocation);
     }
-
     public Transform GetPlayerLoc()
     {
         return playerLocation;
