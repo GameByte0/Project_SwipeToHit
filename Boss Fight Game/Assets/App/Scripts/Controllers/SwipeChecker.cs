@@ -2,13 +2,16 @@ using BossFightGame.Events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BossFightGame.UIEvents;
 
 public class SwipeChecker : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> Directions;//directional arrows & UI gameobjects located here
+    [SerializeField] private List<GameObject> Directions;//directional arrows & UI gameobjects located here, never change values in editor!!!
     [SerializeField] private List<GameObject> Task;//algorithm derived from directions 
     [SerializeField] private List<string> Result;//player inputs
+    
     private bool isInstantiated;
+    private int correctResultCount=0;
 
     [SerializeField] private int difficultyLevel = 4;//replace , for fututre difficulty balancing
     private int checkingIndex = 0;
@@ -21,6 +24,7 @@ public class SwipeChecker : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.OnSwipingEvent -= ResultChecker;
+        ResetChecker();
     }
 
     // Start is called before the first frame update
@@ -71,36 +75,45 @@ public class SwipeChecker : MonoBehaviour
 
         if (Result != null && Task[checkingIndex].name == Result[checkingIndex])
         {
+            Task[checkingIndex].GetComponent<Image>().color = Color.green;
+            correctResultCount++;
 
             if (Task.Count!=Result.Count)
             {
-                Task[checkingIndex].GetComponent<Image>().color = Color.green;
                 checkingIndex++;
             }
             else
             {
                 Debug.LogWarning("YOU MADE ACTION!!!");
-                Result.Clear();
+                Result.Clear();     
 
-
-                //reseting Task list:
-                foreach (GameObject arrow in Task)
-                {
-                    Destroy(arrow);
-                }
-                Task.Clear();
-
-                ShowTask();
                 checkingIndex = 0;
+                ReturnAccuracy();
+
             }
             
         }
         else
         {
             Task[checkingIndex].GetComponent<Image>().color = Color.red;
-            Invoke("NewAttempt", 0.5f);
+            checkingIndex++;
             Debug.Log("Invalid input");
+            if (Task.Count == Result.Count)
+            {
+                ReturnAccuracy();
+            }
         }
+    }
+
+    private void ReturnAccuracy()
+    {
+        float percente = ((float)correctResultCount / (float)Task.Count ) * 100;
+
+        Debug.Log(percente+"%  Correct");
+        correctResultCount = 0;
+
+        UIEvents.RaisOnInteractionMenu();
+        gameObject.SetActive(false);
     }
 
     private void NewAttempt()
@@ -111,5 +124,22 @@ public class SwipeChecker : MonoBehaviour
         }
         Result.Clear();
         checkingIndex = 0;
+    }
+
+    private void ResetChecker()
+    {
+        foreach (GameObject arrow in Task)
+        {
+            Destroy(arrow);//Reseting Tasks
+        }
+        Task.Clear();
+
+        Result.Clear();//Reseting Result
+
+        correctResultCount = 0;
+
+        checkingIndex = 0;
+
+        isInstantiated = false;
     }
 }

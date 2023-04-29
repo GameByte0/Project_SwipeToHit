@@ -16,6 +16,9 @@ namespace BossFightGame.UIEvents
         public delegate void OnSettingsMenu();
         public static event OnSettingsMenu OnSettingsMenuEvent;
 
+        public delegate void OnInteractionMenu();
+        public static event OnInteractionMenu OnInteractionMenuEvent;
+
         public static void RaisOnCharacterSelectMenu()
         {
             OnCharacterSelectMenuEvent?.Invoke();
@@ -27,6 +30,10 @@ namespace BossFightGame.UIEvents
         public static void RaisOnSettingsMenu()
         {
             OnSettingsMenuEvent?.Invoke();
+        }
+        public static void RaisOnInteractionMenu()
+        {
+            OnInteractionMenuEvent?.Invoke();
         }
     }
 }
