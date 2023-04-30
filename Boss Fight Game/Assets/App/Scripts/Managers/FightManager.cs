@@ -1,5 +1,6 @@
 using UnityEngine;
 using BossFightGame.GameManager;
+using BossFightGame.Events;
 
 public class FightManager : MonoBehaviour
 {
@@ -35,14 +36,22 @@ public class FightManager : MonoBehaviour
 
     private void SetPlayer()
     {
-        GameObject player = Instantiate(GameManager.Instance.CharacterDataBase[characterIndex].CharacterPrefab);
+        CharacterDataSO playerData = GameManager.Instance.CharacterDataBase[characterIndex];
 
-        player.AddComponent<PlayerController>();
-        player.AddComponent<SwipeController>();
+        GameObject playerPrefab = Instantiate( playerData.CharacterPrefab);
 
-        player.transform.position = playerLocation.position;
+        playerPrefab.AddComponent<PlayerController>();
+        playerPrefab.AddComponent<SwipeController>();
 
-        player.transform.LookAt(enemyLocation);
+        playerPrefab.transform.position = playerLocation.position;
+
+        playerPrefab.transform.LookAt(enemyLocation);
+
+        GameEvents.RaiseOnSettingStats(
+            (int)playerData.CharacterHealth,
+            (int)playerData.CharacterMana,
+            (int)playerData.CharacterEXP,
+            playerData.CharacterName);
     }
     public Transform GetPlayerLoc()
     {
