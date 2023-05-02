@@ -4,9 +4,11 @@ using UnityEngine;
 using BossFightGame.Events;
 using System;
 
-public class PlayerStatusController : MonoBehaviour
+public class EnemyStatusController : MonoBehaviour
 {
-    [SerializeField] private PlayerStatusView view;
+    [SerializeField] private EnemyStatusView view;
+
+
     private void OnEnable()
     {
         GameEvents.OnSettingStatsEvent += OnSettingStatsEventHandler;
@@ -16,17 +18,14 @@ public class PlayerStatusController : MonoBehaviour
         GameEvents.OnSettingStatsEvent -= OnSettingStatsEventHandler;
     }
 
-    private void OnSettingStatsEventHandler(int health, int mana, int exp, string name)
+    private void OnSettingStatsEventHandler(int health, int mana, int exp, string name, bool isForPlayer)
     {
-        float level = exp / 10;
-        if (level<1)
+        if (!isForPlayer)
         {
-            level = 1;
+            view.SetStats(health, mana, name);
         }
-        view.SetStats(health,mana,(int)level,name);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         

@@ -2272,10 +2272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLocation: {fileID: 2025177210}
   enemyLocation: {fileID: 330913151}
-  playerPrefab: {fileID: 3154944008941228480, guid: 8e86e036a31ce1643b95c7fa87e133b8,
-    type: 3}
-  enemyPrefab: {fileID: 5824087075543551659, guid: 433f3e2cd76126e40aa1fd9237cac006,
-    type: 3}
 --- !u!4 &1065327944
 Transform:
   m_ObjectHideFlags: 0
@@ -3555,7 +3551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1800514247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4002,6 +3998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1930420890}
   - component: {fileID: 1930420891}
+  - component: {fileID: 1930420892}
   m_Layer: 5
   m_Name: Controller - EnemyStatus
   m_TagString: Untagged
@@ -4038,6 +4035,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930420889}
   m_CullTransparentMesh: 1
+--- !u!114 &1930420892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930420889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0531306b48e6ccd40aede9d166629b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 2031160036}
 --- !u!1 &1970274903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,6 +4295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2031160034}
   - component: {fileID: 2031160035}
+  - component: {fileID: 2031160036}
   m_Layer: 5
   m_Name: 'View - EnemyStatus '
   m_TagString: Untagged
@@ -4324,6 +4335,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031160033}
   m_CullTransparentMesh: 1
+--- !u!114 &2031160036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031160033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d77d8781c8942343baff93516f3cfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlller: {fileID: 1930420892}
+  healthSlider: {fileID: 1922773781}
+  manaSlider: {fileID: 1856037812}
+  levelText: {fileID: 480073823}
+  enemyNameText: {fileID: 1437599419}
+  enemyHealthCount: {fileID: 1903239538}
+  enemyManaCount: {fileID: 1606036483}
 --- !u!1001 &1915037166391710572
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace BossFightGame.Events
         public delegate void OnSelectingFighter(bool eventDetails);
         public static event OnSelectingFighter OnSelectingFighterEvent;
 
-        public delegate void OnSettingStats(int health, int mana, int exp, string name);
+        public delegate void OnSettingStats(int health, int mana, int exp, string name , bool isForPlayer);
         public static event OnSettingStats OnSettingStatsEvent;
 
         public static void RaiseOnSelectingFighter(bool i)
@@ -23,9 +23,9 @@ namespace BossFightGame.Events
             OnSwipingEvent?.Invoke(i);
         }
 
-        public static void RaiseOnSettingStats(int health, int mana, int exp, string name)
+        public static void RaiseOnSettingStats(int health, int mana, int exp, string name, bool isForPlayer)
         {
-            OnSettingStatsEvent?.Invoke(health ,mana ,exp ,name);
+            OnSettingStatsEvent?.Invoke(health ,mana ,exp ,name ,isForPlayer );
         }
 
     }

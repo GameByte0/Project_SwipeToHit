@@ -8,9 +8,6 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Transform playerLocation;
     [SerializeField] private Transform enemyLocation;
 
-    [Header("Character References:")]
-    [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject enemyPrefab;
 
     private int characterIndex;
     private void Awake()
@@ -27,11 +24,19 @@ public class FightManager : MonoBehaviour
 
     private void SetEnemy()
     {
-        GameObject enemy = Instantiate(enemyPrefab);
+        CharacterDataSO enemyData = GameManager.Instance.CharacterDataBase[Random.Range(0, 2)];
 
-        enemy.transform.position = enemyLocation.position;
+        GameObject enemyPrefab = Instantiate(enemyData.CharacterPrefab);
 
-        enemy.transform.LookAt(playerLocation);
+        enemyPrefab.transform.position = enemyLocation.position;
+
+        enemyPrefab.transform.LookAt(playerLocation);
+
+        GameEvents.RaiseOnSettingStats(
+            (int)enemyData.CharacterHealth,
+            (int)enemyData.CharacterMana,
+            (int)enemyData.CharacterEXP,
+            enemyData.CharacterName, false);
     }
 
     private void SetPlayer()
@@ -51,7 +56,7 @@ public class FightManager : MonoBehaviour
             (int)playerData.CharacterHealth,
             (int)playerData.CharacterMana,
             (int)playerData.CharacterEXP,
-            playerData.CharacterName);
+            playerData.CharacterName,true);
     }
     public Transform GetPlayerLoc()
     {
