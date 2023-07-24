@@ -32,15 +32,23 @@ public class EnemyStatusView : MonoBehaviour
 
         healthSlider.maxValue = health;
         healthSlider.value = health;
-        enemyHealthCount.text = healthSlider.value + "/" + healthSlider.maxValue;
+        enemyHealthCount.text = $"{ healthSlider.maxValue}";
 
         manaSlider.maxValue = mana;
         manaSlider.value = mana;
-        enemyManaCount.text = manaSlider.value + "/" + manaSlider.maxValue;
+        enemyManaCount.text =$" {manaSlider.maxValue}";
 
 
         levelText.text = "Lvl. " + level ;
 
         enemyNameText.text = name;
+    }
+    public void ChangeStats(int health, int mana)
+    {
+        healthSlider.value = health;
+        enemyHealthCount.text = $"{healthSlider.value}";
+
+        manaSlider.value = mana;
+        enemyManaCount.text = $"{manaSlider.value}";
     }
 }

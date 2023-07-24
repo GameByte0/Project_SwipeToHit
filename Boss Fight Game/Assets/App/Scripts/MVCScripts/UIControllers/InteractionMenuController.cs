@@ -24,11 +24,22 @@ public class InteractionMenuController : MonoBehaviour
         view.gameObject.SetActive(true);
     }
 
-    public void StartAction()
+    public void StartAction(int buttonIndex)
     {
+        switch ((InteractionButtonTypes)buttonIndex)
+        {
+            case InteractionButtonTypes.Attcak:
+            case InteractionButtonTypes.Defence:
+            case InteractionButtonTypes.Item:
+                swipeChecker.ButtonIndex = buttonIndex;
+                break;
+            default:
+                break;
+        }
         view.gameObject.SetActive(false);
         //here Rais event for swipe controller for showing combiniation
         swipeChecker.gameObject.SetActive(true);
+        
     }
    
 }

@@ -13,6 +13,13 @@ namespace BossFightGame.Events
         public delegate void OnSettingStats(int health, int mana, int exp, string name , bool isForPlayer);
         public static event OnSettingStats OnSettingStatsEvent;
 
+        public delegate void OnApplyPercentage(float accuracy,int interacionButton);
+        public static event OnApplyPercentage OnApplyPercentageEvent;
+
+        public delegate void OnChangeStats(int health,int mana);
+        public static event OnChangeStats OnEnemyChangeStatsEvent , OnPlayerChangeStatsEvent;
+
+
         public static void RaiseOnSelectingFighter(bool i)
         {
             OnSelectingFighterEvent?.Invoke(i);
@@ -28,6 +35,19 @@ namespace BossFightGame.Events
             OnSettingStatsEvent?.Invoke(health ,mana ,exp ,name ,isForPlayer );
         }
 
+        public static void RaiseOnApplyPercentageEvent(float accuracy,int buttonIndex)
+        {
+            OnApplyPercentageEvent?.Invoke(accuracy,buttonIndex);
+        }
+        public static void RaiseOnEnemyChangeStats(int health, int mana)
+        {
+            OnEnemyChangeStatsEvent?.Invoke(health, mana);
+        }
+        public static void RaiseOnPlayerChangeStats(int health, int mana)
+        {
+            OnPlayerChangeStatsEvent?.Invoke(health, mana);
+        }
+
     }
     
 }
@@ -38,5 +58,11 @@ public enum ActionTypes
     DOWN,
     LEFT
 
+}
+public enum InteractionButtonTypes
+{
+    Attcak,
+    Defence,
+    Item
 }
 

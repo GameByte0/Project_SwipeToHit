@@ -16,9 +16,19 @@ public class SwipeChecker : MonoBehaviour
     [SerializeField] private int difficultyLevel = 4;//replace , for fututre difficulty balancing
     private int checkingIndex = 0;
 
+    private int _buttonIndex;
+
+    [SerializeField] private Slider swipeTimer;
+    private float cooldownTime=5f; //will change depending on difficulty of action
+    private float requiredTime;
+
+    public int ButtonIndex { set => _buttonIndex = value; }
+
     private void OnEnable()
     {
         GameEvents.OnSwipingEvent += ResultChecker;
+        swipeTimer.gameObject.SetActive(true);
+        swipeTimer.maxValue = cooldownTime;
     }
 
     private void OnDisable()
@@ -36,11 +46,24 @@ public class SwipeChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (cooldownTime>=0)
+        {
+            cooldownTime -= Time.deltaTime;
+            swipeTimer.value = cooldownTime;
+
+            //Debug.Log(cooldownTime);
+        }
+        else
+        {
+
+            ReturnAccuracy();
+        }
+
+
         if (isInstantiated == false)
         {
             ShowTask();
         }
-
     }
 
     private void ShowTask()
@@ -113,7 +136,13 @@ public class SwipeChecker : MonoBehaviour
         correctResultCount = 0;
 
         UIEvents.RaisOnInteractionMenu();
+        GameEvents.RaiseOnApplyPercentageEvent(percente,_buttonIndex);
+
+        cooldownTime = 5f;
+
+        swipeTimer.gameObject.SetActive(false);
         gameObject.SetActive(false);
+
     }
 
     private void NewAttempt()
@@ -142,4 +171,6 @@ public class SwipeChecker : MonoBehaviour
 
         isInstantiated = false;
     }
+
+ 
 }
