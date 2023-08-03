@@ -137,6 +137,8 @@ public class SwipeChecker : MonoBehaviour
 
         UIEvents.RaisOnInteractionMenu();
         GameEvents.RaiseOnApplyPercentageEvent(percente,_buttonIndex);
+        GameEvents.RaiseOnChangeTurn();
+
 
         cooldownTime = 5f;
 

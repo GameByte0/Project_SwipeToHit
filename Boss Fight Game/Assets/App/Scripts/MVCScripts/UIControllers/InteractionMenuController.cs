@@ -8,7 +8,7 @@ using System;
 public class InteractionMenuController : MonoBehaviour
 {
    [SerializeField] private InteractionMenuView view;
-    [SerializeField] private SwipeChecker swipeChecker; 
+   [SerializeField] private SwipeChecker swipeChecker; 
 
     private void OnEnable()
     {
@@ -17,6 +17,10 @@ public class InteractionMenuController : MonoBehaviour
     private void OnDisable()
     {
         UIEvents.OnInteractionMenuEvent -= OnInteractionMenuEventHandler;
+    }
+    private void Update()
+    {
+        
     }
 
     private void OnInteractionMenuEventHandler()
@@ -41,5 +45,18 @@ public class InteractionMenuController : MonoBehaviour
         swipeChecker.gameObject.SetActive(true);
         
     }
+    public void ActivateInteractions(bool isActive)
+    {
+        if (isActive)
+        {
+            view.gameObject.SetActive(false);
+        }
+        else
+        {
+            view.gameObject.SetActive(true);
+        }
+        
+    }
+
    
 }

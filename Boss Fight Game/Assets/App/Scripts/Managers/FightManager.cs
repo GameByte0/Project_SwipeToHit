@@ -8,32 +8,46 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Transform playerLocation;
     [SerializeField] private Transform enemyLocation;
 
-    [Header("PlayerStats")]
+    [Header("Turn-Based Action Parameters")]
+    [SerializeField] private InteractionMenuController interactionMenu;
+
+    private float turnDuration = 30f;
+    private bool isPlayersTurn;
+
+    [Header("Player Refs/Stats")]
     private int _playerHealth;
     private int _playerMana;
     private int _playerExp;
     private string _playerName;
     private int characterIndex; //index of selected character by player
     
-    [Header("EnemyStats")]
+    [Header("Enemy Refs/Stats")]
     private int _enemyHealth;
     private int _enemyMana;
     private int _enemyExp;
     private string _enemyName;
+    private GameObject enemyRef;
 
+
+    [Header("UI Reference")]
+    [SerializeField] private InteractionMenuController timer;
     
     private void OnEnable()
     {
         GameEvents.OnApplyPercentageEvent += OnApplyPercentageEventHandler;
+        GameEvents.OnChangeTurnEvent +=ChangeTurn;
     }
     private void OnDisable()
     {
         GameEvents.OnApplyPercentageEvent -= OnApplyPercentageEventHandler;
+        GameEvents.OnChangeTurnEvent -= ChangeTurn;
     }
 
     private void Awake()
     {
         characterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex");
+
+        isPlayersTurn = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -48,6 +62,9 @@ public class FightManager : MonoBehaviour
         CharacterDataSO enemyData = GameManager.Instance.CharacterDataBase[Random.Range(0, 2)];
 
         GameObject enemyPrefab = Instantiate(enemyData.CharacterPrefab);
+
+        enemyPrefab.AddComponent<EnemyControlller>();
+        enemyRef = enemyPrefab;
 
         enemyPrefab.transform.position = enemyLocation.position;
 
@@ -89,14 +106,22 @@ public class FightManager : MonoBehaviour
             _playerName, true);
     }
   
-    
-    public Transform GetPlayerLoc()
+    private void ChangeTurn()
     {
-        return playerLocation;
-    }
-    public Transform GetEnemyLoc()
-    {
-        return enemyLocation;
+        isPlayersTurn = !isPlayersTurn;
+
+        if (isPlayersTurn)
+        {
+            //its players turn to move
+            interactionMenu.ActivateInteractions(true);
+
+        }
+        else
+        {
+            //enemy starts to doing action;
+            interactionMenu.ActivateInteractions(false);
+            enemyRef.GetComponent<EnemyControlller>().EnemyRandomAction();
+        }
     }
 
     private void OnApplyPercentageEventHandler(float accuracy,int buttonIndex)

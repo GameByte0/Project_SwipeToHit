@@ -19,6 +19,9 @@ namespace BossFightGame.Events
         public delegate void OnChangeStats(int health,int mana);
         public static event OnChangeStats OnEnemyChangeStatsEvent , OnPlayerChangeStatsEvent;
 
+        public delegate void OnChangeTurn();
+        public static event OnChangeTurn OnChangeTurnEvent;
+
 
         public static void RaiseOnSelectingFighter(bool i)
         {
@@ -46,6 +49,10 @@ namespace BossFightGame.Events
         public static void RaiseOnPlayerChangeStats(int health, int mana)
         {
             OnPlayerChangeStatsEvent?.Invoke(health, mana);
+        }
+        public static void RaiseOnChangeTurn()
+        {
+            OnChangeTurnEvent?.Invoke();
         }
 
     }

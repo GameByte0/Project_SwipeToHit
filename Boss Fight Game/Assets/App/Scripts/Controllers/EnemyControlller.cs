@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BossFightGame.Events;
 
 public class EnemyControlller : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class EnemyControlller : MonoBehaviour
     void Start()
     {
         //quick AI for Tests
-        InvokeRepeating("EnemyRandomAction", 0, 2);
+        //InvokeRepeating("EnemyRandomAction", 0, 2);
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class EnemyControlller : MonoBehaviour
        
     }
 
-    private void EnemyRandomAction()
+    public void EnemyRandomAction()
     {
         int random = Random.Range(0, 4);
         ActionTypes a;
@@ -33,7 +34,7 @@ public class EnemyControlller : MonoBehaviour
         {
             case 0 :
                 a = ActionTypes.UP;
-                animator.Play(enemyAnimSO.PlayAnimation(a));
+                animator.Play(enemyAnimSO.PlayAnimation(a)); // animation SO dont added during AddComponent<> code , script cant reach to this 
                 break;
             case 1:
                 a = ActionTypes.RIGHT;
@@ -51,6 +52,7 @@ public class EnemyControlller : MonoBehaviour
                 animator.Play(enemyAnimSO.PlayAnimation(0));
                 break;
         }
-        
+
+        GameEvents.RaiseOnChangeTurn();
     }
 }

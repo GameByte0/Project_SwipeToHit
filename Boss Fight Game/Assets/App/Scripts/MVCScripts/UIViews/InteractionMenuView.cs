@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InteractionMenuView : MonoBehaviour
 {
+    [SerializeField] private TMP_Text timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +17,9 @@ public class InteractionMenuView : MonoBehaviour
     {
         
     }
+
+    //public void StartTimer(int time)
+    //{
+    //    timer.text = time.ToString();
+    //}
 }
