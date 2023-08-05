@@ -47,14 +47,8 @@ public class InteractionMenuController : MonoBehaviour
     }
     public void ActivateInteractions(bool isActive)
     {
-        if (isActive)
-        {
-            view.gameObject.SetActive(false);
-        }
-        else
-        {
-            view.gameObject.SetActive(true);
-        }
+        Debug.Log("activate UI --" + isActive);
+        view.gameObject.SetActive(isActive);
         
     }
 

@@ -89,7 +89,7 @@ public class SwipeController : MonoBehaviour
 
         if (isSwiped)
         {
-            Debug.Log("Start: " + startTouchPos + " , " + "End: " + endTouchPos);
+            //Debug.Log("Start: " + startTouchPos + " , " + "End: " + endTouchPos);
 
 
             switch (swipeDirection)
@@ -98,12 +98,12 @@ public class SwipeController : MonoBehaviour
                     //Horizontal move detection
                     if (endTouchPos.x > startTouchPos.x + pixelOffset)
                     {
-                        Debug.Log("Swipe Right");
+                        //Debug.Log("Swipe Right");
                         GameEvents.RaiseOnSwiping(ActionTypes.RIGHT);
                     }
                     else if (endTouchPos.x < startTouchPos.x + pixelOffset)
                     {
-                        Debug.Log("Swipe Left");
+                        //Debug.Log("Swipe Left");
                         GameEvents.RaiseOnSwiping(ActionTypes.LEFT);
                     }
 
@@ -113,19 +113,19 @@ public class SwipeController : MonoBehaviour
                     //Vertical move detection
                     if (endTouchPos.y > startTouchPos.y + pixelOffset)
                     {
-                        Debug.Log("Swipe Up");
+                        //Debug.Log("Swipe Up");
                         GameEvents.RaiseOnSwiping(ActionTypes.UP);
                     }
                     else if (endTouchPos.y < startTouchPos.y + pixelOffset)
                     {
-                        Debug.Log("Swipe Down");
+                        //Debug.Log("Swipe Down");
                         GameEvents.RaiseOnSwiping(ActionTypes.DOWN);
                     }
 
                     break;
 
                 case SwipeDirection.NONE:
-                    Debug.Log("TAP!!!");
+                   // Debug.Log("TAP!!!");
                     break;
             }
 

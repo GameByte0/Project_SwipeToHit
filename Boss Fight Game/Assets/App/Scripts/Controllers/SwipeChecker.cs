@@ -120,7 +120,7 @@ public class SwipeChecker : MonoBehaviour
         {
             Task[checkingIndex].GetComponent<Image>().color = Color.red;
             checkingIndex++;
-            Debug.Log("Invalid input");
+            //Debug.Log("Invalid input");
             if (Task.Count == Result.Count)
             {
                 ReturnAccuracy();

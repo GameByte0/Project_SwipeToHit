@@ -12,7 +12,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private InteractionMenuController interactionMenu;
 
     private float turnDuration = 30f;
-    private bool isPlayersTurn;
+    private bool isPlayersTurn=true;
 
     [Header("Player Refs/Stats")]
     private int _playerHealth;
@@ -52,6 +52,8 @@ public class FightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ChangeTurn();
+
         SetPlayer();
 
         SetEnemy();
@@ -59,7 +61,9 @@ public class FightManager : MonoBehaviour
 
     private void SetEnemy()
     {
-        CharacterDataSO enemyData = GameManager.Instance.CharacterDataBase[Random.Range(0, 2)];
+        int randomEnemyIndex = Random.Range(0, 2);
+        CharacterDataSO enemyData = GameManager.Instance.CharacterDataBase[randomEnemyIndex];
+        PlayerPrefs.SetInt("EnemyIndex", randomEnemyIndex);
 
         GameObject enemyPrefab = Instantiate(enemyData.CharacterPrefab);
 
@@ -108,17 +112,17 @@ public class FightManager : MonoBehaviour
   
     private void ChangeTurn()
     {
-        isPlayersTurn = !isPlayersTurn;
 
         if (isPlayersTurn)
         {
             //its players turn to move
+            isPlayersTurn = false;
             interactionMenu.ActivateInteractions(true);
-
         }
         else
         {
             //enemy starts to doing action;
+            isPlayersTurn = true;
             interactionMenu.ActivateInteractions(false);
             enemyRef.GetComponent<EnemyControlller>().EnemyRandomAction();
         }

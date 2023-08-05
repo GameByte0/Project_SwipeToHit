@@ -5,7 +5,7 @@ using TMPro;
 
 public class InteractionMenuView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text timer;
+    [SerializeField] private TMP_Text timerText;
     // Start is called before the first frame update
     void Start()
     {
