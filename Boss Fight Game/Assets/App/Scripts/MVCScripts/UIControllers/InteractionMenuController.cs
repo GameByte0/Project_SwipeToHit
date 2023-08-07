@@ -28,18 +28,11 @@ public class InteractionMenuController : MonoBehaviour
     {
         if (view.IsViewActive)
         {
-            if (timeLeft>=0)
-            {
-                timeLeft -= Time.deltaTime;
-                view.StartTimer((int)timeLeft);
-            }
-            else
-            {
-                GameEvents.RaiseOnChangeTurn();
-                timeLeft = fightManager.RoundTime;
-            }
-           
-
+            StartTimer();
+        }
+        else
+        {
+            timeLeft = fightManager.RoundTime;
         }
     }
 
@@ -74,7 +67,17 @@ public class InteractionMenuController : MonoBehaviour
     private void StartTimer()
     {
 
-        //end turn
+        if (timeLeft >= 0)
+        {
+            timeLeft -= Time.deltaTime;
+            view.StartTimer((int)timeLeft);
+        }
+        else
+        {
+            GameEvents.RaiseOnChangeTurn();
+            timeLeft = fightManager.RoundTime;
+        }
+
     }
 
    
