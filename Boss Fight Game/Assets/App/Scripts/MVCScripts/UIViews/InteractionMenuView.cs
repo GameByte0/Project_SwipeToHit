@@ -34,6 +34,5 @@ public class InteractionMenuView : MonoBehaviour
     public void StartTimer(int time)
     {
         timerText.text = time.ToString();
-        Debug.Log("timer started");
     }
 }

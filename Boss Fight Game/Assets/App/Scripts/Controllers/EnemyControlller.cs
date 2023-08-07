@@ -30,12 +30,16 @@ public class EnemyControlller : MonoBehaviour
     {
        
     }
-
-    public void EnemyRandomAction()
+    public void EnemyAction()
     {
+        StartCoroutine(EnemyRandomAction());
+    }
+
+    private IEnumerator EnemyRandomAction()
+    {
+        yield return new WaitForSeconds(Random.Range(2f, 6f));
         int random = Random.Range(0, 4);
         ActionTypes a;
-        Debug.Log("   reache here");
         switch (random)
         {
             case 0 :

@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections;
 using BossFightGame.GameManager;
 using BossFightGame.Events;
+using BossFightGame.UIEvents;
 
 public class FightManager : MonoBehaviour
 {
@@ -11,10 +13,9 @@ public class FightManager : MonoBehaviour
     [Header("Turn-Based Action Parameters")]
     [SerializeField] private InteractionMenuController interactionMenu;
     [SerializeField] private float _roundTime = 15;
+    [SerializeField] private string enemyStatusText = "Enemy's Turn!!!";
+    [SerializeField] private string playerStatusText = "Your Turn!!!";
     public float RoundTime { get => _roundTime; }
-
-
-    private float turnDuration = 30f;
     private bool isPlayersTurn=true;
 
     [Header("Player Refs/Stats")]
@@ -56,7 +57,7 @@ public class FightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeTurn();
+        StartCoroutine(StartingGame());
 
         SetPlayer();
 
@@ -121,6 +122,7 @@ public class FightManager : MonoBehaviour
         {
             //its players turn to move
             isPlayersTurn = false;
+            UIEvents.RaisOnGamestatusChange(playerStatusText);
             interactionMenu.ActivateInteractions(true);
         }
         else
@@ -128,7 +130,8 @@ public class FightManager : MonoBehaviour
             //enemy starts to doing action;
             isPlayersTurn = true;
             interactionMenu.ActivateInteractions(false);
-            enemyRef.GetComponent<EnemyControlller>().EnemyRandomAction();
+            UIEvents.RaisOnGamestatusChange(enemyStatusText);
+            enemyRef.GetComponent<EnemyControlller>().EnemyAction();
         }
     }
 
@@ -152,5 +155,11 @@ public class FightManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private IEnumerator StartingGame()
+    {
+        yield return new WaitForSeconds(1f);
+        ChangeTurn();
     }
 }
