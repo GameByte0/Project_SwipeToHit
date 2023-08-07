@@ -1986,8 +1986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3472b3a2acc9a4685c266818ed1d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
-  timer: {fileID: 0}
+  timerText: {fileID: 115386750}
 --- !u!1 &794554509
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,6 +4014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view: {fileID: 781135909}
   swipeChecker: {fileID: 991410230}
+  fightManager: {fileID: 1065327943}
 --- !u!1 &1856037810
 GameObject:
   m_ObjectHideFlags: 0

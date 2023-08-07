@@ -10,6 +10,9 @@ public class FightManager : MonoBehaviour
 
     [Header("Turn-Based Action Parameters")]
     [SerializeField] private InteractionMenuController interactionMenu;
+    [SerializeField] private float _roundTime = 15;
+    public float RoundTime { get => _roundTime; }
+
 
     private float turnDuration = 30f;
     private bool isPlayersTurn=true;
@@ -31,7 +34,8 @@ public class FightManager : MonoBehaviour
 
     [Header("UI Reference")]
     [SerializeField] private InteractionMenuController timer;
-    
+
+
     private void OnEnable()
     {
         GameEvents.OnApplyPercentageEvent += OnApplyPercentageEventHandler;

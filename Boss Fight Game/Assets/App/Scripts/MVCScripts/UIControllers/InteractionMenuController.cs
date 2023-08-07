@@ -8,7 +8,9 @@ using System;
 public class InteractionMenuController : MonoBehaviour
 {
    [SerializeField] private InteractionMenuView view;
-   [SerializeField] private SwipeChecker swipeChecker; 
+   [SerializeField] private SwipeChecker swipeChecker;
+   [SerializeField] private FightManager fightManager;
+    private float timeLeft;
 
     private void OnEnable()
     {
@@ -18,9 +20,27 @@ public class InteractionMenuController : MonoBehaviour
     {
         UIEvents.OnInteractionMenuEvent -= OnInteractionMenuEventHandler;
     }
+    private void Start()
+    {
+        timeLeft = fightManager.RoundTime;   
+    }
     private void Update()
     {
-        
+        if (view.IsViewActive)
+        {
+            if (timeLeft>=0)
+            {
+                timeLeft -= Time.deltaTime;
+                view.StartTimer((int)timeLeft);
+            }
+            else
+            {
+                GameEvents.RaiseOnChangeTurn();
+                timeLeft = fightManager.RoundTime;
+            }
+           
+
+        }
     }
 
     private void OnInteractionMenuEventHandler()
@@ -50,6 +70,11 @@ public class InteractionMenuController : MonoBehaviour
         Debug.Log("activate UI --" + isActive);
         view.gameObject.SetActive(isActive);
         
+    }
+    private void StartTimer()
+    {
+
+        //end turn
     }
 
    
