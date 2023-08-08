@@ -4,12 +4,15 @@ using UnityEngine;
 using BossFightGame.UIEvents;
 using BossFightGame.Events;
 using System;
+using UnityEngine.UI;
 
 public class InteractionMenuController : MonoBehaviour
 {
    [SerializeField] private InteractionMenuView view;
    [SerializeField] private SwipeChecker swipeChecker;
    [SerializeField] private FightManager fightManager;
+
+    [SerializeField] private Image timerIcon; 
     private float timeLeft;
 
     private void OnEnable()
@@ -22,7 +25,8 @@ public class InteractionMenuController : MonoBehaviour
     }
     private void Start()
     {
-        timeLeft = fightManager.RoundTime;   
+        timeLeft = fightManager.RoundTime;
+        timerIcon.fillAmount = 1;
     }
     private void Update()
     {
@@ -70,12 +74,15 @@ public class InteractionMenuController : MonoBehaviour
         if (timeLeft >= 0)
         {
             timeLeft -= Time.deltaTime;
+            timerIcon.fillAmount = timeLeft/fightManager.RoundTime;  
+            Debug.Log(timerIcon.fillAmount);
             view.StartTimer((int)timeLeft);
         }
         else
         {
             GameEvents.RaiseOnChangeTurn();
             timeLeft = fightManager.RoundTime;
+            timerIcon.fillAmount = 1;
         }
 
     }
