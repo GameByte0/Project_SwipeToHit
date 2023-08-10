@@ -11,6 +11,11 @@ public class EnemyControlller : MonoBehaviour
     [SerializeField]private CharacterAnimSO enemyAnimSO;
     [SerializeField]private int enemyIndex;
 
+    private bool isRandomActionDone;
+    public bool IsRandomActionDone { set => isRandomActionDone = value; }
+
+    float timer=0;
+
 
 
 
@@ -20,24 +25,34 @@ public class EnemyControlller : MonoBehaviour
         enemyIndex = PlayerPrefs.GetInt("EnemyIndex");
         animator = GetComponent<Animator>();
         enemyAnimSO = GameManager.Instance.CharacterDataBase[enemyIndex].AnimationSO;
-
-        //quick AI for Tests
-        //InvokeRepeating("EnemyRandomAction", 0, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (isRandomActionDone==true)
+        {
+            //Debug.Log("RANOM ACTION IS TRUE");
+            EnemyActionTimer();
+        }
     }
-    public void EnemyAction()
+    public void EnemyActionTimer()
     {
-        StartCoroutine(EnemyRandomAction());
+        if (timer>=Random.Range(3f,6f))
+        {
+            timer = 0;
+            isRandomActionDone = false;
+            EnemyRandomAction();
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            //Debug.Log(timer+"   is enemy timer");
+        }
     }
 
-    private IEnumerator EnemyRandomAction()
+    private void EnemyRandomAction()
     {
-        yield return new WaitForSeconds(Random.Range(2f, 6f));
         int random = Random.Range(0, 4);
         ActionTypes a;
         switch (random)
@@ -45,29 +60,34 @@ public class EnemyControlller : MonoBehaviour
             case 0 :
                 a = ActionTypes.UP;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                GameEvents.RaiseOnChangeTurn();
+                StartCoroutine(ChangeTurn());
                 break;
             case 1:
                 a = ActionTypes.RIGHT;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                GameEvents.RaiseOnChangeTurn();
+                StartCoroutine(ChangeTurn());
                 break;
             case 2:
                 a = ActionTypes.DOWN;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                GameEvents.RaiseOnChangeTurn();
+                StartCoroutine(ChangeTurn());
                 break;
             case 3:
                 a = ActionTypes.LEFT;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                GameEvents.RaiseOnChangeTurn();
+                StartCoroutine(ChangeTurn());
                 break;
             default:
                 animator.Play(enemyAnimSO.PlayAnimation(0));
-                GameEvents.RaiseOnChangeTurn();
+                StartCoroutine(ChangeTurn());
                 break;
         }
 
 
+    }
+    private IEnumerator ChangeTurn()
+    {
+        yield return new WaitForSeconds(2f);
+        GameEvents.RaiseOnChangeTurn();
     }
 }

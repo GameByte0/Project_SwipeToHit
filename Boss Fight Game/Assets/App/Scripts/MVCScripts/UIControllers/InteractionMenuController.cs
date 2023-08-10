@@ -64,7 +64,7 @@ public class InteractionMenuController : MonoBehaviour
     }
     public void ActivateInteractions(bool isActive)
     {
-        Debug.Log("activate UI --" + isActive);
+        //Debug.Log("activate UI --" + isActive);
         view.gameObject.SetActive(isActive);
         
     }
@@ -75,7 +75,7 @@ public class InteractionMenuController : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             timerIcon.fillAmount = timeLeft/fightManager.RoundTime;  
-            Debug.Log(timerIcon.fillAmount);
+           // Debug.Log(timerIcon.fillAmount);
             view.StartTimer((int)timeLeft);
         }
         else

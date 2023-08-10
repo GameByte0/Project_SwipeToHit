@@ -19,7 +19,7 @@ public class SwipeChecker : MonoBehaviour
     private int _buttonIndex;
 
     [SerializeField] private Slider swipeTimer;
-    private float cooldownTime=5f; //will change depending on difficulty of action
+    private float cooldownTime=2f; //will change depending on difficulty of action
     private float requiredTime;
 
     public int ButtonIndex { set => _buttonIndex = value; }
@@ -140,7 +140,7 @@ public class SwipeChecker : MonoBehaviour
         GameEvents.RaiseOnChangeTurn();
 
 
-        cooldownTime = 5f;
+        cooldownTime = 2f;
 
         swipeTimer.gameObject.SetActive(false);
         gameObject.SetActive(false);

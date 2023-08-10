@@ -131,7 +131,7 @@ public class FightManager : MonoBehaviour
             isPlayersTurn = true;
             interactionMenu.ActivateInteractions(false);
             UIEvents.RaisOnGamestatusChange(enemyStatusText);
-            enemyRef.GetComponent<EnemyControlller>().EnemyAction();
+            enemyRef.GetComponent<EnemyControlller>().IsRandomActionDone = true;
         }
     }
 
