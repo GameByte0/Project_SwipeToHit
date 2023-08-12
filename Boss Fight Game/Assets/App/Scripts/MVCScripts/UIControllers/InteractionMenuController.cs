@@ -73,10 +73,11 @@ public class InteractionMenuController : MonoBehaviour
 
         if (timeLeft >= 0)
         {
+            
+            timerIcon.fillAmount = timeLeft/fightManager.RoundTime;  //getting time percentage
             timeLeft -= Time.deltaTime;
-            timerIcon.fillAmount = timeLeft/fightManager.RoundTime;  
-           // Debug.Log(timerIcon.fillAmount);
-            view.StartTimer((int)timeLeft);
+            // Debug.Log(timerIcon.fillAmount);
+            view.StartTimer(Mathf.RoundToInt(timeLeft));
         }
         else
         {

@@ -2308,7 +2308,7 @@ MonoBehaviour:
   Task: []
   Result: []
   difficultyLevel: 5
-  swipeTimer: {fileID: 1868070209}
+  swipeTimeSlider: {fileID: 1868070209}
 --- !u!114 &991410231
 MonoBehaviour:
   m_ObjectHideFlags: 0

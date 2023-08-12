@@ -53,37 +53,36 @@ public class EnemyControlller : MonoBehaviour
 
     private void EnemyRandomAction()
     {
+        EnemyRandomMove();
+        StartCoroutine(ChangeTurn());
+
+    }
+    private void EnemyRandomMove()
+    {
         int random = Random.Range(0, 4);
         ActionTypes a;
         switch (random)
         {
-            case 0 :
+            case 0:
                 a = ActionTypes.UP;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                StartCoroutine(ChangeTurn());
                 break;
             case 1:
                 a = ActionTypes.RIGHT;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                StartCoroutine(ChangeTurn());
                 break;
             case 2:
                 a = ActionTypes.DOWN;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                StartCoroutine(ChangeTurn());
                 break;
             case 3:
                 a = ActionTypes.LEFT;
                 animator.Play(enemyAnimSO.PlayAnimation(a));
-                StartCoroutine(ChangeTurn());
                 break;
             default:
                 animator.Play(enemyAnimSO.PlayAnimation(0));
-                StartCoroutine(ChangeTurn());
                 break;
         }
-
-
     }
     private IEnumerator ChangeTurn()
     {
