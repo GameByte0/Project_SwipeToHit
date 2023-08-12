@@ -18,17 +18,17 @@ public class SwipeChecker : MonoBehaviour
 
     private int _buttonIndex;
 
-    [SerializeField] private Slider swipeTimer;
-    private float cooldownTime=2f; //will change depending on difficulty of action
-    private float requiredTime;
+    [SerializeField] private Slider swipeTimeSlider;
+    private float requiredSwipeTime=2f; //will change depending on difficulty of action
+    private float swipeTime = 0;
 
     public int ButtonIndex { set => _buttonIndex = value; }
 
     private void OnEnable()
     {
         GameEvents.OnSwipingEvent += ResultChecker;
-        swipeTimer.gameObject.SetActive(true);
-        swipeTimer.maxValue = cooldownTime;
+        swipeTimeSlider.gameObject.SetActive(true);
+        swipeTimeSlider.maxValue = requiredSwipeTime;
     }
 
     private void OnDisable()
@@ -40,16 +40,16 @@ public class SwipeChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        swipeTime = requiredSwipeTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cooldownTime>=0)
+        if (swipeTime>=0)
         {
-            cooldownTime -= Time.deltaTime;
-            swipeTimer.value = cooldownTime;
+            swipeTime -= Time.deltaTime;
+            swipeTimeSlider.value = swipeTime;
 
             //Debug.Log(cooldownTime);
         }
@@ -140,9 +140,9 @@ public class SwipeChecker : MonoBehaviour
         GameEvents.RaiseOnChangeTurn();
 
 
-        cooldownTime = 2f;
+       swipeTime = requiredSwipeTime;
 
-        swipeTimer.gameObject.SetActive(false);
+        swipeTimeSlider.gameObject.SetActive(false);
         gameObject.SetActive(false);
 
     }
