@@ -10,10 +10,12 @@ public class PlayerStatusController : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnSettingStatsEvent += OnSettingStatsEventHandler;
+        GameEvents.OnPlayerChangeStatsEvent +=OnPlayerChangeStatsEventHandler;
     }
     private void OnDisable()
     {
         GameEvents.OnSettingStatsEvent -= OnSettingStatsEventHandler;
+        GameEvents.OnPlayerChangeStatsEvent -= OnPlayerChangeStatsEventHandler;
     }
 
     private void OnSettingStatsEventHandler(int health, int mana, int exp, string name, bool isForPlayer)
@@ -41,5 +43,9 @@ public class PlayerStatusController : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnPlayerChangeStatsEventHandler(int health,int mana)
+    {
+        view.ChangeStats(health, mana);
     }
 }

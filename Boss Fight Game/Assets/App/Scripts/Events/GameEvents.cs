@@ -22,6 +22,9 @@ namespace BossFightGame.Events
         public delegate void OnChangeTurn();
         public static event OnChangeTurn OnChangeTurnEvent;
 
+        public delegate void OnHitPlayer(int damage);
+        public static event OnHitPlayer OnHitPlayerEvent;
+
 
         public static void RaiseOnSelectingFighter(bool i)
         {
@@ -53,6 +56,10 @@ namespace BossFightGame.Events
         public static void RaiseOnChangeTurn()
         {
             OnChangeTurnEvent?.Invoke();
+        }
+        public static void RaiseOnHitPlayer(int damage)
+        {
+            OnHitPlayerEvent?.Invoke(damage);
         }
 
     }

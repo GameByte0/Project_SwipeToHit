@@ -14,7 +14,9 @@ public class EnemyControlller : MonoBehaviour
     private bool isRandomActionDone;
     public bool IsRandomActionDone { set => isRandomActionDone = value; }
 
-    float timer=0;
+    private float timer=0;
+
+    private int randomDamage;
 
 
 
@@ -54,6 +56,8 @@ public class EnemyControlller : MonoBehaviour
     private void EnemyRandomAction()
     {
         EnemyRandomMove();
+        randomDamage = Random.Range(15, 30);
+        GameEvents.RaiseOnHitPlayer(randomDamage); //random damage to player;
         StartCoroutine(ChangeTurn());
 
     }

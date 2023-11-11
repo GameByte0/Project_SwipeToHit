@@ -40,12 +40,14 @@ public class FightManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnApplyPercentageEvent += OnApplyPercentageEventHandler;
-        GameEvents.OnChangeTurnEvent +=ChangeTurn;
+        GameEvents.OnChangeTurnEvent += ChangeTurn;
+        GameEvents.OnHitPlayerEvent += OnHitPlayerEventHandler;
     }
     private void OnDisable()
     {
         GameEvents.OnApplyPercentageEvent -= OnApplyPercentageEventHandler;
         GameEvents.OnChangeTurnEvent -= ChangeTurn;
+        GameEvents.OnHitPlayerEvent -= OnHitPlayerEventHandler;
     }
 
     private void Awake()
@@ -155,6 +157,11 @@ public class FightManager : MonoBehaviour
             default:
                 break;
         }
+    }
+    private void OnHitPlayerEventHandler(int damage)
+    {
+        _playerHealth -= damage;
+        GameEvents.RaiseOnPlayerChangeStats(_playerHealth, _playerMana);
     }
 
     private IEnumerator StartingGame()

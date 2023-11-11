@@ -33,13 +33,13 @@ public class PlayerStatusView : MonoBehaviour
     public void SetStats(int health, int mana, int level, string name)
     {
         //Health
-        healthSlider.maxValue = health; 
+        healthSlider.maxValue = health;
         healthSlider.value = health;
-        playerHealthCount.text = healthSlider.value+"/"+healthSlider.maxValue; 
+        playerHealthCount.text = $"{healthSlider.value}";
         //Mana
         manaSlider.maxValue = mana;
         manaSlider.value = mana;
-        playerManaCount.text = manaSlider.value + "/" + manaSlider.maxValue;
+        playerManaCount.text =$"{manaSlider.value}";
         //Level
         levelText.text = "Lvl. " + level;
         //Player Name
@@ -47,5 +47,12 @@ public class PlayerStatusView : MonoBehaviour
 
 
 
+    }
+    public void ChangeStats(int health, int mana)
+    {
+        healthSlider.value = health;
+        playerHealthCount.text = $"{healthSlider.value}";
+        manaSlider.value = mana;
+        playerManaCount.text = $"{manaSlider.value}";
     }
 }
