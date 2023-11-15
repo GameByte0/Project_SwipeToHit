@@ -135,9 +135,9 @@ public class SwipeChecker : MonoBehaviour
         Debug.Log(percente+"%  Correct");
         correctResultCount = 0;
 
-        UIEvents.RaisOnInteractionMenu();
+       // UIEvents.RaisOnInteractionMenu();
         GameEvents.RaiseOnApplyPercentageEvent(percente,_buttonIndex);
-        GameEvents.RaiseOnChangeTurn();
+        GameEvents.RaiseOnChangeTurn();//controll all the logic flow!!!
 
 
        swipeTime = requiredSwipeTime;

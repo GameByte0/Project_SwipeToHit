@@ -34,7 +34,7 @@ public class EnemyControlller : MonoBehaviour
     {
         if (isRandomActionDone==true)
         {
-            //Debug.Log("RANOM ACTION IS TRUE");
+            
             EnemyActionTimer();
         }
     }
@@ -49,14 +49,14 @@ public class EnemyControlller : MonoBehaviour
         else
         {
             timer += Time.deltaTime;
-            //Debug.Log(timer+"   is enemy timer");
+            
         }
     }
 
     private void EnemyRandomAction()
     {
         EnemyRandomMove();
-        randomDamage = Random.Range(15, 30);
+        randomDamage = Random.Range(100, 200);
         GameEvents.RaiseOnHitPlayer(randomDamage); //random damage to player;
         StartCoroutine(ChangeTurn());
 

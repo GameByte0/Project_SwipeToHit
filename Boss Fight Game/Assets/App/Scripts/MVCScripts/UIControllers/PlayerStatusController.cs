@@ -11,11 +11,13 @@ public class PlayerStatusController : MonoBehaviour
     {
         GameEvents.OnSettingStatsEvent += OnSettingStatsEventHandler;
         GameEvents.OnPlayerChangeStatsEvent +=OnPlayerChangeStatsEventHandler;
+        GameEvents.OnGameEndedEvent += OnGameEndedEventHandler;
     }
     private void OnDisable()
     {
         GameEvents.OnSettingStatsEvent -= OnSettingStatsEventHandler;
         GameEvents.OnPlayerChangeStatsEvent -= OnPlayerChangeStatsEventHandler;
+        GameEvents.OnGameEndedEvent -= OnGameEndedEventHandler;
     }
 
     private void OnSettingStatsEventHandler(int health, int mana, int exp, string name, bool isForPlayer)
@@ -32,20 +34,18 @@ public class PlayerStatusController : MonoBehaviour
         
         
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnPlayerChangeStatsEventHandler(int health,int mana)
     {
         view.ChangeStats(health, mana);
+    }
+    private  void OnGameEndedEventHandler()
+    {
+        StartCoroutine(DeactivateView());
+    }
+
+    private IEnumerator  DeactivateView()
+    {
+        yield return new WaitForSeconds(0.1f);
+        view.gameObject.SetActive(false);
     }
 }

@@ -19,7 +19,7 @@ namespace BossFightGame.UIEvents
         public delegate void OnInteractionMenu();
         public static event OnInteractionMenu OnInteractionMenuEvent;
 
-        public delegate void OnGameStatusChange(string status);
+        public delegate void OnGameStatusChange(string status, int statusIndex);
         public static event OnGameStatusChange OnGameStatusChangeEvent;
 
         public static void RaisOnCharacterSelectMenu()
@@ -38,9 +38,9 @@ namespace BossFightGame.UIEvents
         {
             OnInteractionMenuEvent?.Invoke();
         }
-        public static void RaisOnGamestatusChange(string status)
+        public static void RaisOnGamestatusChange(string status,int statusIndex)
         {
-            OnGameStatusChangeEvent?.Invoke(status);
+            OnGameStatusChangeEvent?.Invoke(status,statusIndex);
         }
     }
 }

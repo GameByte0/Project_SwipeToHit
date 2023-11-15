@@ -13,11 +13,13 @@ public class EnemyStatusController : MonoBehaviour
     {
         GameEvents.OnSettingStatsEvent += OnSettingStatsEventHandler;
         GameEvents.OnEnemyChangeStatsEvent += OnEnemyChangeStatsEventHandler;
+        GameEvents.OnGameEndedEvent += OnGameEndedEventHandler;
     }
     private void OnDisable()
     {
         GameEvents.OnSettingStatsEvent -= OnSettingStatsEventHandler;
         GameEvents.OnEnemyChangeStatsEvent -= OnEnemyChangeStatsEventHandler;
+        GameEvents.OnGameEndedEvent -= OnGameEndedEventHandler;
     }
 
     private void OnEnemyChangeStatsEventHandler(int health, int mana)
@@ -32,15 +34,15 @@ public class EnemyStatusController : MonoBehaviour
             view.SetStats(health, mana, name);
         }
     }
-
-    void Start()
+    private void OnGameEndedEventHandler()
     {
-        
+        StartCoroutine(DeactivateView());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator DeactivateView()
     {
-        
+        yield return new WaitForSeconds(0.1f);
+        view.gameObject.SetActive(false);
     }
+
 }

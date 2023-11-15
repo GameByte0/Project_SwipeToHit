@@ -25,6 +25,9 @@ namespace BossFightGame.Events
         public delegate void OnHitPlayer(int damage);
         public static event OnHitPlayer OnHitPlayerEvent;
 
+        public delegate void OnGameEnded();
+        public static event OnGameEnded OnGameEndedEvent;
+
 
         public static void RaiseOnSelectingFighter(bool i)
         {
@@ -61,6 +64,10 @@ namespace BossFightGame.Events
         {
             OnHitPlayerEvent?.Invoke(damage);
         }
+        public static void RaiseOnGameEnded()
+        {
+            OnGameEndedEvent?.Invoke();
+        }
 
     }
     
@@ -75,7 +82,7 @@ public enum ActionTypes
 }
 public enum InteractionButtonTypes
 {
-    Attcak,
+    Attañk,
     Defence,
     Item
 }

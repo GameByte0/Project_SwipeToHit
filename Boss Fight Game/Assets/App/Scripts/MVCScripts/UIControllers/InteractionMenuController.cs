@@ -30,7 +30,7 @@ public class InteractionMenuController : MonoBehaviour
     }
     private void Update()
     {
-        if (view.IsViewActive)
+        if (view.gameObject.activeSelf)
         {
             StartTimer();
         }
@@ -49,7 +49,7 @@ public class InteractionMenuController : MonoBehaviour
     {
         switch ((InteractionButtonTypes)buttonIndex)
         {
-            case InteractionButtonTypes.Attcak:
+            case InteractionButtonTypes.Attañk:
             case InteractionButtonTypes.Defence:
             case InteractionButtonTypes.Item:
                 swipeChecker.ButtonIndex = buttonIndex;
@@ -58,14 +58,7 @@ public class InteractionMenuController : MonoBehaviour
                 break;
         }
         view.gameObject.SetActive(false);
-        //here Rais event for swipe controller for showing combiniation
         swipeChecker.gameObject.SetActive(true);
-        
-    }
-    public void ActivateInteractions(bool isActive)
-    {
-        //Debug.Log("activate UI --" + isActive);
-        view.gameObject.SetActive(isActive);
         
     }
     private void StartTimer()
@@ -76,12 +69,12 @@ public class InteractionMenuController : MonoBehaviour
             
             timerIcon.fillAmount = timeLeft/fightManager.RoundTime;  //getting time percentage
             timeLeft -= Time.deltaTime;
-            // Debug.Log(timerIcon.fillAmount);
             view.StartTimer(Mathf.RoundToInt(timeLeft));
         }
         else
         {
             GameEvents.RaiseOnChangeTurn();
+            view.gameObject.SetActive(false);
             timeLeft = fightManager.RoundTime;
             timerIcon.fillAmount = 1;
         }

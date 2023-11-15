@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using BossFightGame.GameManager;
 using BossFightGame.Events;
@@ -15,6 +15,8 @@ public class FightManager : MonoBehaviour
     [SerializeField] private float _roundTime = 15;
     [SerializeField] private string enemyStatusText = "Enemy's Turn!!!";
     [SerializeField] private string playerStatusText = "Your Turn!!!";
+    [SerializeField] private string gameOverStatusText = "GameOver!!!";
+    [SerializeField] private string winStatusText = "You Win!!!";
     public float RoundTime { get => _roundTime; }
     private bool isPlayersTurn=true;
 
@@ -33,20 +35,16 @@ public class FightManager : MonoBehaviour
     private GameObject enemyRef;
 
 
-    [Header("UI Reference")]
-    [SerializeField] private InteractionMenuController timer;
-
-
     private void OnEnable()
     {
         GameEvents.OnApplyPercentageEvent += OnApplyPercentageEventHandler;
-        GameEvents.OnChangeTurnEvent += ChangeTurn;
+        GameEvents.OnChangeTurnEvent += OnChangeTurnEventHandler;
         GameEvents.OnHitPlayerEvent += OnHitPlayerEventHandler;
     }
     private void OnDisable()
     {
         GameEvents.OnApplyPercentageEvent -= OnApplyPercentageEventHandler;
-        GameEvents.OnChangeTurnEvent -= ChangeTurn;
+        GameEvents.OnChangeTurnEvent -= OnChangeTurnEventHandler;
         GameEvents.OnHitPlayerEvent -= OnHitPlayerEventHandler;
     }
 
@@ -119,21 +117,18 @@ public class FightManager : MonoBehaviour
   
     private void ChangeTurn()
     {
-
-        if (isPlayersTurn)
+        isPlayersTurn = !isPlayersTurn;
+        if (!isPlayersTurn)
         {
             //its players turn to move
-            isPlayersTurn = false;
-            UIEvents.RaisOnGamestatusChange(playerStatusText);
-            interactionMenu.ActivateInteractions(true);
+            UIEvents.RaisOnGamestatusChange(playerStatusText,0);
+            UIEvents.RaisOnInteractionMenu();
         }
         else
         {
             //enemy starts to doing action;
-            isPlayersTurn = true;
-            interactionMenu.ActivateInteractions(false);
-            UIEvents.RaisOnGamestatusChange(enemyStatusText);
-            enemyRef.GetComponent<EnemyControlller>().IsRandomActionDone = true;
+            UIEvents.RaisOnGamestatusChange(enemyStatusText,0);
+            enemyRef.GetComponent<EnemyControlller>().IsRandomActionDone = true; //bad decision but works
         }
     }
 
@@ -141,13 +136,13 @@ public class FightManager : MonoBehaviour
     {
         switch ((InteractionButtonTypes)buttonIndex)
         {
-            case InteractionButtonTypes.Attcak:
+            case InteractionButtonTypes.Attaсk:
 
-                float damege = 20 * accuracy / 100;
+                float damege = 100; //20 * accuracy / 100; DAMAGE WİLL CHANGE
 
                 _enemyHealth -= (int)damege;
 
-                GameEvents.RaiseOnEnemyChangeStats(_enemyHealth, _enemyMana);
+                GameEvents.RaiseOnEnemyChangeStats(_enemyHealth, _enemyMana); //Updating enemy stats UI
 
                 break;
             case InteractionButtonTypes.Defence:
@@ -162,6 +157,25 @@ public class FightManager : MonoBehaviour
     {
         _playerHealth -= damage;
         GameEvents.RaiseOnPlayerChangeStats(_playerHealth, _playerMana);
+    }
+    private void OnChangeTurnEventHandler()
+    {
+        if (_playerHealth > 0 && _enemyHealth > 0)
+        {
+            ChangeTurn();
+        }
+        else if(_playerHealth <= 0)
+        {
+            UIEvents.RaisOnGamestatusChange(gameOverStatusText, 1);
+            GameEvents.RaiseOnGameEnded();
+            Time.timeScale = 0.1f;
+        }
+        else if(_enemyHealth <= 0)
+        {
+            UIEvents.RaisOnGamestatusChange(winStatusText, 1);
+            GameEvents.RaiseOnGameEnded();
+            Time.timeScale = 0.1f;
+        }
     }
 
     private IEnumerator StartingGame()

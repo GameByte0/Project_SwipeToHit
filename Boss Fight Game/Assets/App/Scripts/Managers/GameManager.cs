@@ -1,3 +1,4 @@
+using BossFightGame.Events;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,11 +14,22 @@ namespace BossFightGame.GameManager
         [SerializeField] private List<CharacterDataSO> characterDataBase;//All Characters' DB
         public List<CharacterDataSO> CharacterDataBase { get => characterDataBase; }//All Characters' DB PROPERTY
 
+
+        private void OnEnable()
+        {
+            GameEvents.OnGameEndedEvent += OnGameEndedEventHandler;
+        }
+        private void OnDisable()
+        {
+            GameEvents.OnGameEndedEvent -= OnGameEndedEventHandler;
+        }
         private void Awake()
         {
             DontDestroyOnLoad(this);
 
             Singletone();
+
+            Time.timeScale = 1.0f;
         }
 
         private void Singletone()
@@ -37,6 +49,11 @@ namespace BossFightGame.GameManager
         {
             int index = PlayerPrefs.GetInt("SelectedCharacterIndex");
             return characterDataBase[index];
+        }
+
+        private void OnGameEndedEventHandler()
+        {
+            Time.timeScale= 0.1f;
         }
 
 

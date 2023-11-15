@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using BossFightGame.UIEvents;
 using BossFightGame.Events;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class GameStatusController : MonoBehaviour
 {
@@ -27,11 +29,27 @@ public class GameStatusController : MonoBehaviour
     {
         
     }
-    private void ChangeGameStatus(string gameStatus)
+    private void ChangeGameStatus(string gameStatus, int statusIndex)
     {
         view.gameObject.SetActive(true);
         view.UpdateGameStatus(gameStatus);
-        StartCoroutine(DeactivateView());
+        if (statusIndex == 0)
+        {
+            StartCoroutine(DeactivateView());
+        }
+        else
+        {
+            view.ActivateStateButtons();
+        }
+        
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("GamePlay");
+    }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     private IEnumerator DeactivateView()
     {
