@@ -56,7 +56,7 @@ public class EnemyControlller : MonoBehaviour
     private void EnemyRandomAction()
     {
         EnemyRandomMove();
-        randomDamage = Random.Range(100, 200);
+        randomDamage = Random.Range(1,6)*4;
         GameEvents.RaiseOnHitPlayer(randomDamage); //random damage to player;
         StartCoroutine(ChangeTurn());
 

@@ -138,7 +138,7 @@ public class FightManager : MonoBehaviour
         {
             case InteractionButtonTypes.Attaсk:
 
-                float damege = 100; //20 * accuracy / 100; DAMAGE WİLL CHANGE
+                float damege = 20 * accuracy / 100;
 
                 _enemyHealth -= (int)damege;
 

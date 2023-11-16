@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BossFightGame.UIEvents;
-using BossFightGame.Events;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class GameStatusController : MonoBehaviour

@@ -50,7 +50,7 @@ public class SwipeController : MonoBehaviour
 		}
 #endif
 
-#if UNITY_EDITOR
+
         //Debug.Log("Editor");
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -85,7 +85,7 @@ public class SwipeController : MonoBehaviour
             startTouchPos = endTouchPos;
 
         }
-#endif
+
 
         if (isSwiped)
         {
